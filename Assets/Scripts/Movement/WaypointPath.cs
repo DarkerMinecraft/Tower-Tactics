@@ -9,16 +9,17 @@ public class WaypointPath : MonoBehaviour
     [SerializeField]
     private Tilemap tilemap;
 
+    private Vector2[] waypointPath;
+
     void Start()
     {
-        
-    }
+        waypointPath = new Vector2[transform.childCount];
 
-    void Update()
-    {
-        
+        for(int i = 0; i < transform.childCount; i++) 
+        {
+            waypointPath[i] = tilemap.GetCellCenterWorld(ConvertPosition(GetWaypoint(i)));
+        }
     }
-
     private void OnDrawGizmos()
     {
         int childCount = transform.childCount;
@@ -26,7 +27,7 @@ public class WaypointPath : MonoBehaviour
         Gizmos.color = Color.blue;
         for(int i = 0; i < childCount; i++) 
         {
-            Vector2 position = tilemap.GetCellCenterWorld(ConvertPosition(transform.GetChild(i).position));
+            Vector2 position = tilemap.GetCellCenterWorld(ConvertPosition(GetWaypoint(i)));
 
             Gizmos.DrawSphere(position, 0.1f);
         }
@@ -37,14 +38,27 @@ public class WaypointPath : MonoBehaviour
 
             for (int i = 0; i < childCount; i++) 
             {
-                for(int j = (i + 1); j < childCount; j++) 
+                Vector2 currentWaypoint = GetWaypoint(i);
+                Vector2 nextWaypoint = GetWaypoint(i + 1);
+
+                if(nextWaypoint != Vector2.zero) 
                 {
-                    Gizmos.DrawLine(tilemap.GetCellCenterWorld(ConvertPosition(transform.GetChild(i).position)),
-                        tilemap.GetCellCenterWorld(ConvertPosition(transform.GetChild(j).position)));
+                    currentWaypoint = tilemap.GetCellCenterWorld(ConvertPosition(currentWaypoint));
+                    nextWaypoint = tilemap.GetCellCenterWorld(ConvertPosition(nextWaypoint));
+
+                    Gizmos.DrawLine(currentWaypoint, nextWaypoint);
                 }
             }
         }
+    }
 
+    public Vector2[] GetPath() { return waypointPath; } 
+
+    Vector2 GetWaypoint(int index)
+    {
+        if(index >= transform.childCount) return Vector2.zero;
+
+        return transform.GetChild(index).transform.position;
     }
 
     Vector3Int ConvertPosition(Vector2 position) 
