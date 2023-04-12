@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TileMovement : MonoBehaviour
@@ -11,6 +12,11 @@ public class TileMovement : MonoBehaviour
     private float moveSpeed, rotationSpeed;
 
     private int currentWaypoint;
+
+    void Awake()
+    {
+       
+    }
 
     void Start()
     {
@@ -32,9 +38,9 @@ public class TileMovement : MonoBehaviour
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
 
-        transform.position = Vector2.MoveTowards(transform.position, waypoint, moveSpeed * Time.deltaTime);   
-
-        if(distance < 0.1f) 
+        transform.position = Vector2.MoveTowards(transform.position, waypoint, moveSpeed * Time.deltaTime);
+        
+        if(distance <= 0.001f) 
         {
             currentWaypoint++;
 
