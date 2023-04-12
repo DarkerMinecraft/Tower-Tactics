@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    [SerializeField]
+    private WaypointPath path;
+
+    [SerializeField]
+    private GameObject[] enemies;
+
     void Start()
     {
-        
+        foreach (GameObject enemy in enemies)
+            enemy.GetComponent<TileMovement>().path = path;
+
+        Instantiate(enemies[0], transform);
     }
 
-    // Update is called once per frame
     void Update()
     {
         

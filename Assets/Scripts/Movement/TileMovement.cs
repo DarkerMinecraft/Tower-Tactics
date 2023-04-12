@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class TileMovement : MonoBehaviour
 {
-    [SerializeField]
-    private WaypointPath path;
+
+    [HideInInspector]
+    public WaypointPath path;
 
     [SerializeField]
     [Range(0,10)]
