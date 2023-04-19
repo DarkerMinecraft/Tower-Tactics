@@ -20,6 +20,7 @@ public class WaypointPath : MonoBehaviour
             waypointPath[i] = tilemap.GetCellCenterWorld(ConvertPosition(GetWaypoint(i)));
         }
     }
+
     private void OnDrawGizmos()
     {
         int childCount = transform.childCount;

@@ -9,7 +9,7 @@ public class ProjectileController : MonoBehaviour
         if (collision.tag == "Enemy") 
         {
             Health health = collision.GetComponent<Health>();
-            health.RemoveHealth(1);
+            health.RemoveHealth(3);
 
             Destroy(gameObject);
         }

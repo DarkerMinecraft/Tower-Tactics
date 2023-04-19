@@ -46,7 +46,7 @@ public class TileMovement : MonoBehaviour
 
             if(currentWaypoint >= path.GetPath().Length) 
             {
-                // TODO Remove Health 
+                LivesChanger.DecreaseLives(1);
                 Destroy(gameObject);
             }
         }
