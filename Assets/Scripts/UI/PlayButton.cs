@@ -13,7 +13,7 @@ public class PlayButton : MonoBehaviour
     public void OnClick() 
     {
         if (!enemySpawner.IsPlaying()) 
-            enemySpawner.StartWave();
+            enemySpawner.CreateWave();
     }
 
     private void Update()

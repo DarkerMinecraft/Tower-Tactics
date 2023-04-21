@@ -8,19 +8,23 @@ public class Health : MonoBehaviour
     [SerializeField]
     private int maxHealthPoints;
 
-    private int currentHealthPoints;
+    [SerializeField]
+    private int killReward;
+
+    private float currentHealthPoints;
 
     void Start()
     {
         currentHealthPoints = maxHealthPoints; 
     }
 
-    public void RemoveHealth(int amount) 
+    public void RemoveHealth(float amount) 
     {
         currentHealthPoints -= amount;
         if (currentHealthPoints <= 0) 
         {
             Destroy(gameObject);
+            CoinsChanger.ChangeCoins(killReward);
         }
     }
 

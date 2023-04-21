@@ -233,6 +233,7 @@ MonoBehaviour:
   radius: 3
   spawner: {fileID: 0}
   inRadiusEnemies: []
+  radiusCircle: {fileID: 0}
 --- !u!114 &8128685144222034886
 MonoBehaviour:
   m_ObjectHideFlags: 0

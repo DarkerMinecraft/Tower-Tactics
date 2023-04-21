@@ -14,6 +14,14 @@ public class TowerController : MonoBehaviour
     [HideInInspector]
     public List<GameObject> inRadiusEnemies;
 
+    [HideInInspector]
+    public SpriteRenderer radiusCircle;
+
+    private void Awake()
+    {
+        radiusCircle = GetComponentsInChildren<SpriteRenderer>()[0];
+    }
+
     void Start()
     {
         inRadiusEnemies = new List<GameObject>();

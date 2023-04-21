@@ -53,6 +53,7 @@ public class TowerPlacer : MonoBehaviour
                 towerObject.GetComponent<TowerController>().spawner = enemySpawner;
                 CoinsChanger.ChangeCoins(-cost);
                 towerBought = false;
+                towerObject.GetComponent<TowerController>().radiusCircle.enabled = false;
             }
         }
         else radiusCircle.color = red;
