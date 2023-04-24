@@ -1,20 +1,43 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using Tactics.Attributes;
+using Tactics.Stats;
+using Tactics.UI;
 using UnityEngine;
 
-public class ProjectileController : MonoBehaviour
+namespace Tactics.Towers
 {
-
-    [SerializeField]
-    private float damage;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class ProjectileController : MonoBehaviour, IModifierProvider
     {
-        if (collision.tag == "Enemy") 
-        {
-            Health health = collision.GetComponent<Health>();
-            health.RemoveHealth(damage);
 
-            Destroy(gameObject);
+        private BaseStats baseStats;
+
+        private void Awake()
+        {
+            baseStats = GetComponent<BaseStats>();
         }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.tag == "Enemy")
+            {
+                Health health = collision.GetComponent<Health>();
+                health.RemoveHealth(baseStats.GetStat(Stat.Damage));
+
+                Destroy(gameObject);
+            }
+        }
+
+        public IEnumerable<float> GetAdditiveModifers(Stat stat)
+        {
+            yield return 0;
+        }
+
+        public IEnumerable<float> GetPercentageModifers(Stat stat)
+        {
+            if (stat == Stat.Speed && PlayButton.IsFast())
+                yield return 100;
+        }
+
     }
 }

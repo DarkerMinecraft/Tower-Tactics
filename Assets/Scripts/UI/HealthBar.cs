@@ -1,33 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using Tactics.Attributes;
 using UnityEngine;
 
-public class HealthBar : MonoBehaviour
+namespace Tactics.UI
 {
-
-    [SerializeField]
-    private Health health;
-
-    private RectTransform rect;
-
-    private void Awake()
+    public class HealthBar : MonoBehaviour
     {
-        rect = GetComponent<RectTransform>();
-    }
 
-    void Start()
-    {
-        
-    }
+        [SerializeField]
+        private Health health;
 
-    void Update()
-    {
-        float healthPercentage = health.GetPercentage();
+        private RectTransform rect;
 
-        if (healthPercentage >= 1)
-            transform.parent.GetComponent<Canvas>().enabled = false;
-        else transform.parent.GetComponent<Canvas>().enabled = true;
+        private void Awake()
+        {
+            rect = GetComponent<RectTransform>();
+        }
 
-        rect.localScale = new Vector3(healthPercentage, 1, 1);
+        void Start()
+        {
+
+        }
+
+        void Update()
+        {
+            float healthPercentage = health.GetPercentage();
+
+            if (healthPercentage >= 1)
+                transform.parent.GetComponent<Canvas>().enabled = false;
+            else transform.parent.GetComponent<Canvas>().enabled = true;
+
+            rect.localScale = new Vector3(healthPercentage, 1, 1);
+        }
     }
 }

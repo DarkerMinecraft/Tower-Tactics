@@ -1,31 +1,37 @@
+using Tactics.Stats;
 using UnityEngine;
 
-public class ProjectileMovement : MonoBehaviour
+namespace Tactics.Movement.Towers
 {
-
-    [SerializeField]
-    private float moveSpeed, rotationSpeed;
-
-    private GameObject target;
-
-    void Start()
+    public class ProjectileMovement : MonoBehaviour
     {
-        
-    }
 
-    void Update()
-    {
-        if (target != null)
+        [SerializeField]
+        private float rotationSpeed;
+
+        private GameObject target;
+
+        private BaseStats baseStats;
+
+        private void Awake()
         {
-            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.deltaTime);
-
-            Vector3 direction = target.transform.position - transform.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward) * Quaternion.identity;
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+            baseStats = GetComponent<BaseStats>();
         }
-        else Destroy(gameObject);
-    }
 
-    public void MoveTo(GameObject target) { this.target = target; }
+        void Update()
+        {
+            if (target != null)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, target.transform.position, baseStats.GetStat(Stat.Speed) * Time.deltaTime);
+
+                Vector3 direction = target.transform.position - transform.position;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+                Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward) * Quaternion.identity;
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+            }
+            else Destroy(gameObject);
+        }
+
+        public void MoveTo(GameObject target) { this.target = target; }
+    }
 }

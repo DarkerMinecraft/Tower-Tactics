@@ -3,67 +3,70 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class WaypointPath : MonoBehaviour
+namespace Tactics.Movement.Enemies
 {
-
-    [SerializeField]
-    private Tilemap tilemap;
-
-    private Vector2[] waypointPath;
-
-    void Start()
+    public class WaypointPath : MonoBehaviour
     {
-        waypointPath = new Vector2[transform.childCount];
 
-        for(int i = 0; i < transform.childCount; i++) 
+        [SerializeField]
+        private Tilemap tilemap;
+
+        private Vector2[] waypointPath;
+
+        void Start()
         {
-            waypointPath[i] = tilemap.GetCellCenterWorld(ConvertPosition(GetWaypoint(i)));
-        }
-    }
+            waypointPath = new Vector2[transform.childCount];
 
-    private void OnDrawGizmos()
-    {
-        int childCount = transform.childCount;
-
-        Gizmos.color = Color.blue;
-        for(int i = 0; i < childCount; i++) 
-        {
-            Vector2 position = tilemap.GetCellCenterWorld(ConvertPosition(GetWaypoint(i)));
-
-            Gizmos.DrawSphere(position, 0.1f);
-        }
-
-        if (childCount >= 2) 
-        {
-            Gizmos.color = Color.yellow;
-
-            for (int i = 0; i < childCount; i++) 
+            for (int i = 0; i < transform.childCount; i++)
             {
-                Vector2 currentWaypoint = GetWaypoint(i);
-                Vector2 nextWaypoint = GetWaypoint(i + 1);
+                waypointPath[i] = tilemap.GetCellCenterWorld(ConvertPosition(GetWaypoint(i)));
+            }
+        }
 
-                if(nextWaypoint != Vector2.zero) 
+        private void OnDrawGizmos()
+        {
+            int childCount = transform.childCount;
+
+            Gizmos.color = Color.blue;
+            for (int i = 0; i < childCount; i++)
+            {
+                Vector2 position = tilemap.GetCellCenterWorld(ConvertPosition(GetWaypoint(i)));
+
+                Gizmos.DrawSphere(position, 0.1f);
+            }
+
+            if (childCount >= 2)
+            {
+                Gizmos.color = Color.yellow;
+
+                for (int i = 0; i < childCount; i++)
                 {
-                    currentWaypoint = tilemap.GetCellCenterWorld(ConvertPosition(currentWaypoint));
-                    nextWaypoint = tilemap.GetCellCenterWorld(ConvertPosition(nextWaypoint));
+                    Vector2 currentWaypoint = GetWaypoint(i);
+                    Vector2 nextWaypoint = GetWaypoint(i + 1);
 
-                    Gizmos.DrawLine(currentWaypoint, nextWaypoint);
+                    if (nextWaypoint != Vector2.zero)
+                    {
+                        currentWaypoint = tilemap.GetCellCenterWorld(ConvertPosition(currentWaypoint));
+                        nextWaypoint = tilemap.GetCellCenterWorld(ConvertPosition(nextWaypoint));
+
+                        Gizmos.DrawLine(currentWaypoint, nextWaypoint);
+                    }
                 }
             }
         }
-    }
 
-    public Vector2[] GetPath() { return waypointPath; } 
+        public Vector2[] GetPath() { return waypointPath; }
 
-    Vector2 GetWaypoint(int index)
-    {
-        if(index >= transform.childCount) return Vector2.zero;
+        Vector2 GetWaypoint(int index)
+        {
+            if (index >= transform.childCount) return Vector2.zero;
 
-        return transform.GetChild(index).transform.position;
-    }
+            return transform.GetChild(index).transform.position;
+        }
 
-    Vector3Int ConvertPosition(Vector2 position) 
-    {
-        return tilemap.WorldToCell(position);
+        Vector3Int ConvertPosition(Vector2 position)
+        {
+            return tilemap.WorldToCell(position);
+        }
     }
 }

@@ -1,32 +1,48 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Tactics.Stats;
+using Tactics.UI;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+namespace Tactics.Attributes
 {
-
-    [SerializeField]
-    private int maxHealthPoints;
-
-    [SerializeField]
-    private int killReward;
-
-    private float currentHealthPoints;
-
-    void Start()
+    public class Health : MonoBehaviour
     {
-        currentHealthPoints = maxHealthPoints; 
-    }
 
-    public void RemoveHealth(float amount) 
-    {
-        currentHealthPoints -= amount;
-        if (currentHealthPoints <= 0) 
+        private float maxHealthPoints;
+
+        private float currentHealthPoints;
+
+        private BaseStats baseStats;
+
+        public Action onDeath; 
+
+        private void Awake()
         {
-            Destroy(gameObject);
-            CoinsChanger.ChangeCoins(killReward);
+            baseStats = GetComponent<BaseStats>();
         }
-    }
 
-    public float GetPercentage() { return (float)currentHealthPoints / (float)maxHealthPoints; }
+        void Start()
+        {
+            maxHealthPoints = baseStats.GetStat(Stat.Health);
+
+            Debug.Log(maxHealthPoints);
+
+            currentHealthPoints = maxHealthPoints;
+        }
+
+        public void RemoveHealth(float amount)
+        {
+            currentHealthPoints -= amount;
+            if (currentHealthPoints <= 0)
+            {
+                onDeath.Invoke();
+                CoinsChanger.ChangeCoins(Mathf.CeilToInt(baseStats.GetStat(Stat.KillReward)));
+            }
+        }
+
+        public float GetPercentage() { return (float)currentHealthPoints / (float)maxHealthPoints; }
+
+    }
 }

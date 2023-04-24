@@ -1,34 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using Tactics.Movement.Towers;
+using Tactics.UI;
 using UnityEngine;
 
-public class ProjectileShoot : MonoBehaviour
+namespace Tactics.Towers
 {
-
-    [SerializeField]
-    private GameObject projectile;
-
-    [SerializeField]
-    private float timeBetweenShoot;
-
-    private float timeBetweenShootTimer; 
-
-    void Start()
+    public class ProjectileShoot : MonoBehaviour
     {
-        
-    }
 
-    void Update()
-    {
-        timeBetweenShootTimer += Time.deltaTime;
+        [SerializeField]
+        private GameObject projectile;
 
-        if (timeBetweenShoot <= timeBetweenShootTimer) 
+        [SerializeField]
+        private float timeBetweenShoot;
+
+        private float timeBetweenShootTimer;
+
+        void Update()
         {
-            if (GetComponent<TowerController>().inRadiusEnemies.Count != 0)
+            timeBetweenShootTimer += Time.deltaTime;
+
+            if ((timeBetweenShoot / (PlayButton.IsFast() ? 2 : 1)) <= timeBetweenShootTimer)
             {
-                GameObject projectile = Instantiate(this.projectile, transform);
-                projectile.GetComponent<ProjectileMovement>().MoveTo(GetComponent<TowerController>().inRadiusEnemies[0]);
-                timeBetweenShootTimer = 0;
+                if (GetComponent<TowerController>().inRadiusEnemies.Count != 0)
+                {
+                    GameObject projectile = Instantiate(this.projectile, transform);
+                    projectile.GetComponent<ProjectileMovement>().MoveTo(GetComponent<TowerController>().inRadiusEnemies[0]);
+                    timeBetweenShootTimer = 0;
+                }
             }
         }
     }

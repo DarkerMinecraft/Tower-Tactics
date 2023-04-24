@@ -1,67 +1,71 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Tactics.Enemies;
 using UnityEngine;
 
-public class TowerController : MonoBehaviour
+namespace Tactics.Towers
 {
-
-    [SerializeField]
-    private float radius;
-
-    [HideInInspector]
-    public EnemySpawner spawner;
-
-    [HideInInspector]
-    public List<GameObject> inRadiusEnemies;
-
-    [HideInInspector]
-    public SpriteRenderer radiusCircle;
-
-    private void Awake()
+    public class TowerController : MonoBehaviour
     {
-        radiusCircle = GetComponentsInChildren<SpriteRenderer>()[0];
-    }
 
-    void Start()
-    {
-        inRadiusEnemies = new List<GameObject>();
-    }
+        [SerializeField]
+        private float radius;
 
-    void Update()
-    {
-        if (spawner != null)
+        [HideInInspector]
+        public EnemySpawner spawner;
+
+        [HideInInspector]
+        public List<GameObject> inRadiusEnemies;
+
+        [HideInInspector]
+        public SpriteRenderer radiusCircle;
+
+        private void Awake()
         {
-            for (int i = 0; i < spawner.transform.childCount; i++)
+            radiusCircle = GetComponentsInChildren<SpriteRenderer>()[0];
+        }
+
+        void Start()
+        {
+            inRadiusEnemies = new List<GameObject>();
+        }
+
+        void Update()
+        {
+            if (spawner != null)
             {
-                Transform spawnerChild = spawner.transform.GetChild(i);
-
-                float distance = Vector2.Distance(spawnerChild.position, transform.position);
-
-                if (!inRadiusEnemies.Contains(spawnerChild.gameObject))
+                for (int i = 0; i < spawner.transform.childCount; i++)
                 {
-                    if (distance <= radius)
-                        inRadiusEnemies.Add(spawnerChild.gameObject);
-                }
-                else
-                {
-                    if (distance > radius)
-                        inRadiusEnemies.Remove(spawnerChild.gameObject);
-                }
-            }
+                    Transform spawnerChild = spawner.transform.GetChild(i);
 
-            for (int i = 0; i < inRadiusEnemies.Count; i++)
-            {
-                GameObject obj = inRadiusEnemies[i];
-                if (obj == null) inRadiusEnemies.Remove(obj);
+                    float distance = Vector2.Distance(spawnerChild.position, transform.position);
+
+                    if (!inRadiusEnemies.Contains(spawnerChild.gameObject))
+                    {
+                        if (distance <= radius)
+                            inRadiusEnemies.Add(spawnerChild.gameObject);
+                    }
+                    else
+                    {
+                        if (distance > radius)
+                            inRadiusEnemies.Remove(spawnerChild.gameObject);
+                    }
+                }
+
+                for (int i = 0; i < inRadiusEnemies.Count; i++)
+                {
+                    GameObject obj = inRadiusEnemies[i];
+                    if (obj == null) inRadiusEnemies.Remove(obj);
+                }
             }
         }
-    }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, radius);
-    }
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, radius);
+        }
 
-    public float GetRadius() { return radius; }
+        public float GetRadius() { return radius; }
+    }
 }

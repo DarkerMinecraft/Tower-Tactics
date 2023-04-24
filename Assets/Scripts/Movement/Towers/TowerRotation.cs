@@ -1,44 +1,49 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Tactics.Towers;
 using UnityEngine;
 
-public class TowerRotation : MonoBehaviour
+namespace Tactics.Movement.Towers
 {
-
-    [SerializeField]
-    [Range(0, 90)]
-    private float rotationSpeed;
-
-    private List<GameObject> inRadiusEnemies;
-
-    private Quaternion startingRotation;
-
-    private TowerController towerController;
-
-    void Start()
+    public class TowerRotation : MonoBehaviour
     {
-        startingRotation = transform.rotation;
-        towerController = transform.parent.GetComponent<TowerController>();
-    }
 
-    void LateUpdate()
-    {
-        inRadiusEnemies = towerController.inRadiusEnemies;
+        [SerializeField]
+        [Range(0, 90)]
+        private float rotationSpeed;
 
-        if (inRadiusEnemies.Count != 0)
+        private List<GameObject> inRadiusEnemies;
+
+        private Quaternion startingRotation;
+
+        private TowerController towerController;
+
+        void Start()
         {
-            GameObject target = inRadiusEnemies[0];
-            if (target != null)
-            {
-                Vector3 direction = target.transform.position - transform.position;
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-                Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward) * Quaternion.identity;
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
-            } else transform.rotation = Quaternion.Slerp(transform.rotation, startingRotation, rotationSpeed * Time.deltaTime);
+            startingRotation = transform.rotation;
+            towerController = transform.parent.GetComponent<TowerController>();
         }
-        else transform.rotation = Quaternion.Slerp(transform.rotation, startingRotation, rotationSpeed * Time.deltaTime);
 
+        void LateUpdate()
+        {
+            inRadiusEnemies = towerController.inRadiusEnemies;
+
+            if (inRadiusEnemies.Count != 0)
+            {
+                GameObject target = inRadiusEnemies[0];
+                if (target != null)
+                {
+                    Vector3 direction = target.transform.position - transform.position;
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+                    Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward) * Quaternion.identity;
+                    transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+                }
+                else transform.rotation = Quaternion.Slerp(transform.rotation, startingRotation, rotationSpeed * Time.deltaTime);
+            }
+            else transform.rotation = Quaternion.Slerp(transform.rotation, startingRotation, rotationSpeed * Time.deltaTime);
+
+
+        }
 
     }
-
 }

@@ -1,30 +1,35 @@
 ﻿using System.Collections;
+using Tactics.Towers;
 using TMPro;
 using UnityEngine;
 
-public class TowerBuyer : MonoBehaviour
+namespace Tactics.UI
 {
 
-    [SerializeField]
-    private GameObject tower;
-
-    [SerializeField]
-    private int cost;
-
-    [SerializeField]
-    private TowerPlacer towerPlacer;
-
-    private void Start()
+    public class TowerBuyer : MonoBehaviour
     {
-        GetComponentInChildren<TextMeshProUGUI>().text = "$" + cost.ToString("N0");   
-    }
 
-    public void OnClick() 
-    {
-        if (CoinsChanger.CanChangeCoins(cost)) 
+        [SerializeField]
+        private GameObject tower;
+
+        [SerializeField]
+        private int cost;
+
+        [SerializeField]
+        private TowerPlacer towerPlacer;
+
+        private void Start()
         {
-            towerPlacer.CreateTower(tower, cost);
+            GetComponentInChildren<TextMeshProUGUI>().text = "$" + cost.ToString("N0");
         }
+
+        public void OnClick()
+        {
+            if (CoinsChanger.CanChangeCoins(cost))
+            {
+                towerPlacer.CreateTower(tower, cost);
+            }
+        }
+
     }
-    
 }

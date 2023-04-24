@@ -2,27 +2,31 @@
 using TMPro;
 using UnityEngine;
 
-public class LivesChanger : MonoBehaviour
+namespace Tactics.UI
 {
 
-    private static int lives = 200;
-
-    private TextMeshProUGUI text;
-
-    void Awake()
+    public class LivesChanger : MonoBehaviour
     {
-        text = GetComponent<TextMeshProUGUI>();
+
+        private static int lives = 200;
+
+        private TextMeshProUGUI text;
+
+        void Awake()
+        {
+            text = GetComponent<TextMeshProUGUI>();
+        }
+
+        void Update()
+        {
+            text.text = lives.ToString("N0");
+        }
+
+        public static void DecreaseLives(int amount)
+        {
+            lives -= amount;
+        }
     }
-
-    void Update()
-    {
-        text.text = lives.ToString("N0");
-    }
-
-    public static void DecreaseLives(int amount) 
-    {
-        lives -= amount;
-    } 
 }
 
 

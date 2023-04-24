@@ -2,29 +2,33 @@
 using TMPro;
 using UnityEngine;
 
-public class CoinsChanger : MonoBehaviour
+namespace Tactics.UI
 {
 
-    private static int coins = 650;
-
-    private TextMeshProUGUI text;
-
-    void Awake()
+    public class CoinsChanger : MonoBehaviour
     {
-        text = GetComponent<TextMeshProUGUI>();
-    }
 
-    void Update()
-    {
-        text.text = coins.ToString("N0");
-    }
+        private static int coins = 650;
 
-    public static void ChangeCoins(int amount) 
-    {
-        coins += amount;
-    }
-    public static bool CanChangeCoins(int amount) 
-    {
-        return coins >= amount;
+        private TextMeshProUGUI text;
+
+        void Awake()
+        {
+            text = GetComponent<TextMeshProUGUI>();
+        }
+
+        void Update()
+        {
+            text.text = coins.ToString("N0");
+        }
+
+        public static void ChangeCoins(int amount)
+        {
+            coins += amount;
+        }
+        public static bool CanChangeCoins(int amount)
+        {
+            return coins >= amount;
+        }
     }
 }

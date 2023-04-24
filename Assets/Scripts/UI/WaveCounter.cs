@@ -2,20 +2,24 @@
 using TMPro;
 using UnityEngine;
 
-public class WaveCounter : MonoBehaviour
+namespace Tactics.UI
 {
 
-    private static TextMeshProUGUI textMesh;
-
-    private void Start()
+    public class WaveCounter : MonoBehaviour
     {
-        textMesh = GetComponent<TextMeshProUGUI>();
-    }
 
-    public static void SetWaveCounter(int wave)
-    {
-        if (wave == 0) return;
-        textMesh.text = wave.ToString();
-    }
+        private static TextMeshProUGUI textMesh;
 
+        private void Start()
+        {
+            textMesh = GetComponent<TextMeshProUGUI>();
+        }
+
+        public static void SetWaveCounter(int wave)
+        {
+            if (wave == 0) return;
+            textMesh.text = wave.ToString();
+        }
+
+    }
 }

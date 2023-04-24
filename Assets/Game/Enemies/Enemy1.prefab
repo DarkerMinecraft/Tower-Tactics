@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4905139387384503015}
   - component: {fileID: 501067865599888291}
   - component: {fileID: 4327513228729115922}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Health Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 4931405242817236075}
   - component: {fileID: 3679067371407204642}
   - component: {fileID: 1969801068406659383}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 5377343159222896798}
   - component: {fileID: 6358245677909820854}
   - component: {fileID: 8744145686128401121}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,9 +280,11 @@ GameObject:
   - component: {fileID: 3924274181809630691}
   - component: {fileID: 5817137192485095518}
   - component: {fileID: 6529483028984558521}
+  - component: {fileID: 7565730260586165048}
   - component: {fileID: 9010622219250721385}
   - component: {fileID: 1558394481558022363}
-  m_Layer: 0
+  - component: {fileID: 6287980939286578933}
+  m_Layer: 6
   m_Name: Enemy1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -365,14 +367,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7969794435129894983}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -404,6 +406,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.31054407, y: 0.43046367}
   m_EdgeRadius: 0
+--- !u!114 &7565730260586165048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7969794435129894983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbce20417741137498d566182906b2f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lowerEnemy: {fileID: 0}
 --- !u!114 &9010622219250721385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,8 +432,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: {fileID: 0}
-  moveSpeed: 4
   rotationSpeed: 10
+  currentWaypoint: 0
 --- !u!114 &1558394481558022363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,5 +446,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed66de60e7eef645bab7fccfcba788b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 35
-  killReward: 1
+--- !u!114 &6287980939286578933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7969794435129894983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8909e96f5e5c329488f242e7a49abaa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+  - stat: 0
+    baseValue: 15
+  - stat: 1
+    baseValue: 4
+  - stat: 4
+    baseValue: 1
