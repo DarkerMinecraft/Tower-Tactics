@@ -14,7 +14,7 @@ namespace Tactics.Towers
 
         private void Awake()
         {
-            baseStats = GetComponent<BaseStats>();
+            baseStats = GetComponentInParent<BaseStats>();
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

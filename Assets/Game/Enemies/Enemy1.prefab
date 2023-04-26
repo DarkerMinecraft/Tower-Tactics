@@ -465,3 +465,5 @@ MonoBehaviour:
     baseValue: 4
   - stat: 4
     baseValue: 1
+  - stat: 6
+    baseValue: 1

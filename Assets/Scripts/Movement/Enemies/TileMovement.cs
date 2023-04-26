@@ -54,7 +54,7 @@ namespace Tactics.Movement.Enemies
 
                 if (currentWaypoint >= path.GetPath().Length)
                 {
-                    LivesChanger.DecreaseLives(1);
+                    LivesChanger.DecreaseLives((int) baseStats.GetStat(Stat.HealthDestroyer));
                     Destroy(gameObject);
                 }
             }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Tactics.Enemies;
+using Tactics.Towers.Upgrader;
 using Tactics.UI;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -11,7 +12,7 @@ namespace Tactics.Towers
     {
 
         [SerializeField]
-        private float towerDistance = 0.3f;
+        public float towerDistance = 0.3f;
 
         [SerializeField]
         private Tilemap tilemap;
@@ -22,6 +23,9 @@ namespace Tactics.Towers
         [SerializeField]
         private EnemySpawner enemySpawner;
 
+        [SerializeField]
+        private GameObject upgradeTowerUI;
+
         private int cost;
 
         private SpriteRenderer radiusCircle;
@@ -30,7 +34,7 @@ namespace Tactics.Towers
 
         private GameObject towerObject;
 
-        private bool towerBought;
+        public static bool towerBought;
 
         private void Start()
         {
@@ -56,8 +60,8 @@ namespace Tactics.Towers
                 {
                     towerObject.GetComponent<TowerController>().spawner = enemySpawner;
                     CoinsChanger.ChangeCoins(-cost);
-                    towerBought = false;
                     towerObject.GetComponent<TowerController>().radiusCircle.enabled = false;
+                    towerBought = false;
                 }
             }
             else radiusCircle.color = red;

@@ -26,9 +26,6 @@ namespace Tactics.Attributes
         void Start()
         {
             maxHealthPoints = baseStats.GetStat(Stat.Health);
-
-            Debug.Log(maxHealthPoints);
-
             currentHealthPoints = maxHealthPoints;
         }
 

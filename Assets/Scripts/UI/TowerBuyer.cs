@@ -2,11 +2,12 @@
 using Tactics.Towers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Tactics.UI
 {
 
-    public class TowerBuyer : MonoBehaviour
+    public class TowerBuyer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
 
         [SerializeField]
@@ -17,6 +18,8 @@ namespace Tactics.UI
 
         [SerializeField]
         private TowerPlacer towerPlacer;
+
+        public static bool onUI = false;
 
         private void Start()
         {
@@ -31,5 +34,14 @@ namespace Tactics.UI
             }
         }
 
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            onUI = true;
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            onUI = false;
+        }
     }
 }

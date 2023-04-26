@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Tactics.Movement.Towers;
+using Tactics.Stats;
 using Tactics.UI;
 using UnityEngine;
 
@@ -12,16 +13,20 @@ namespace Tactics.Towers
         [SerializeField]
         private GameObject projectile;
 
-        [SerializeField]
-        private float timeBetweenShoot;
+        private BaseStats stats;
 
         private float timeBetweenShootTimer;
+
+        private void Awake()
+        {
+            stats = GetComponent<BaseStats>();
+        }
 
         void Update()
         {
             timeBetweenShootTimer += Time.deltaTime;
 
-            if ((timeBetweenShoot / (PlayButton.IsFast() ? 2 : 1)) <= timeBetweenShootTimer)
+            if ((stats.GetStat(Stat.ShootingTime) / (PlayButton.IsFast() ? 2 : 1)) <= timeBetweenShootTimer)
             {
                 if (GetComponent<TowerController>().inRadiusEnemies.Count != 0)
                 {

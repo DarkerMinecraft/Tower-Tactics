@@ -15,14 +15,14 @@ namespace Tactics.Movement.Towers
 
         private void Awake()
         {
-            baseStats = GetComponent<BaseStats>();
+            baseStats = GetComponentInParent<BaseStats>();
         }
 
         void Update()
         {
             if (target != null)
             {
-                transform.position = Vector2.MoveTowards(transform.position, target.transform.position, baseStats.GetStat(Stat.Speed) * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, target.transform.position, 20 * Time.deltaTime);
 
                 Vector3 direction = target.transform.position - transform.position;
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;

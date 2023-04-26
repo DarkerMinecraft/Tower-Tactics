@@ -1,16 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Tactics.Enemies;
+using Tactics.Stats;
 using UnityEngine;
 
 namespace Tactics.Towers
 {
     public class TowerController : MonoBehaviour
     {
-
-        [SerializeField]
-        private float radius;
-
+      
         [HideInInspector]
         public EnemySpawner spawner;
 
@@ -20,8 +18,11 @@ namespace Tactics.Towers
         [HideInInspector]
         public SpriteRenderer radiusCircle;
 
+        private BaseStats stats;
+
         private void Awake()
         {
+            stats = GetComponent<BaseStats>();  
             radiusCircle = GetComponentsInChildren<SpriteRenderer>()[0];
         }
 
@@ -42,12 +43,12 @@ namespace Tactics.Towers
 
                     if (!inRadiusEnemies.Contains(spawnerChild.gameObject))
                     {
-                        if (distance <= radius)
+                        if (distance <= stats.GetStat(Stat.Radius))
                             inRadiusEnemies.Add(spawnerChild.gameObject);
                     }
                     else
                     {
-                        if (distance > radius)
+                        if (distance > stats.GetStat(Stat.Radius))
                             inRadiusEnemies.Remove(spawnerChild.gameObject);
                     }
                 }
@@ -58,14 +59,10 @@ namespace Tactics.Towers
                     if (obj == null) inRadiusEnemies.Remove(obj);
                 }
             }
+
+            radiusCircle.transform.localScale = new Vector2(GetRadius(), GetRadius());
         }
 
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, radius);
-        }
-
-        public float GetRadius() { return radius; }
+        public float GetRadius() { return stats.GetStat(Stat.Radius); }
     }
 }

@@ -9,6 +9,8 @@ namespace Tactics.Stats
         Speed, 
         Damage,
         Radius,
-        KillReward
+        KillReward,
+        ShootingTime,
+        HealthDestroyer
     }
 }
