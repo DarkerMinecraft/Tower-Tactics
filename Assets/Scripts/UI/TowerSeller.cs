@@ -22,7 +22,6 @@ namespace Tactics.UI
         private void Update()
         {
            discountedReturn = (float) GetTotalCost() * .7f;
-
            GetComponentInChildren<TextMeshProUGUI>().text = "Sell: $" + discountedReturn.ToString("N0");
         }
 

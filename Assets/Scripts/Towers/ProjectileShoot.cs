@@ -31,9 +31,24 @@ namespace Tactics.Towers
                 if (GetComponent<TowerController>().inRadiusEnemies.Count != 0)
                 {
                     GameObject projectile = Instantiate(this.projectile, transform);
-                    projectile.GetComponent<ProjectileMovement>().MoveTo(GetComponent<TowerController>().inRadiusEnemies[0]);
+                    SetProjectileTarget(projectile);
                     timeBetweenShootTimer = 0;
                 }
+            }
+        }
+
+        private void SetProjectileTarget(GameObject projectile)
+        {
+            int targetType = TargetingButton.GetTargeting(gameObject);
+            List<GameObject> enemies = GetComponent<TowerController>().inRadiusEnemies;
+
+            if (targetType == 0)
+            {
+                projectile.GetComponent<ProjectileMovement>().MoveTo(enemies[0]);
+            }
+            else if (targetType == 1)
+            {
+                projectile.GetComponent<ProjectileMovement>().MoveTo(enemies[enemies.Count - 1]);
             }
         }
     }
