@@ -1,9 +1,6 @@
-using System.Collections;
-using Tactics.Assets.Scripts.UI;
 using Tactics.Towers.Upgrader;
 using Tactics.UI;
 using Tactics.Upgrader;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Tactics.Towers
@@ -26,7 +23,7 @@ namespace Tactics.Towers
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0) && !TowerInfoUI.onUI)
+            if (Input.GetMouseButtonDown(0) && (!TowerInfoUI.onUI || !towerUpgraderUI.activeSelf))
             {
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 

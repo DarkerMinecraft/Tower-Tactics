@@ -49,7 +49,7 @@ namespace Tactics.Enemies
                 enemy.GetComponent<TileMovement>().path = paths[Random.Range(0, paths.Length)];
                 Instantiate(enemy, transform);
 
-                yield return new WaitForSeconds(0.3f);
+                yield return new WaitForSeconds(PlayButton.IsFast() ? 1f / 5f : 1f );
             }
 
             coroutineFinished = true;
@@ -89,6 +89,8 @@ namespace Tactics.Enemies
                 allowedEnemies.Add(enemies[1]);
             else if(waveCounter == 9)
                 allowedEnemies.Add(enemies[2]);
+            else if(waveCounter == 25)
+                allowedEnemies.Add(enemies[3]);
 
             StartCoroutine("StartWave");
         }
@@ -100,7 +102,7 @@ namespace Tactics.Enemies
                 playing = false;
                 coroutineFinished = false;
 
-                CoinsChanger.ChangeCoins(100);
+                CoinsChanger.ChangeCoins(Random.Range(100, 201));
             }
 
             WaveCounter.SetWaveCounter(waveCounter);

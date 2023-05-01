@@ -30,21 +30,21 @@ namespace Tactics.Enemies
         public IEnumerable<float> GetPercentageModifers(Stat stat)
         {
             if (stat == Stat.Health)
-                yield return 100 * ((float)waveCounter / 3f);
+                yield return 50 * ((float)waveCounter / 3f);
 
             if (stat == Stat.Speed && PlayButton.IsFast())
-                yield return 100;
+                yield return 400;
         }
 
         void OnDeath() 
         {
             if (lowerEnemy != null)
             {
-                for (int i = 0; i < Random.Range(1, 11); i++)
+                for (int i = 0; i < Random.Range(1, 4); i++)
                 {
                     GameObject enemy = Instantiate(lowerEnemy, transform.parent);
-                    enemy.transform.position = transform.position;
-                    enemy.transform.rotation = transform.rotation;
+                    enemy.transform.position = gameObject.transform.position;
+                    enemy.transform.rotation = gameObject.transform.rotation;
                     enemy.GetComponent<TileMovement>().currentWaypoint = GetComponent<TileMovement>().currentWaypoint;
                 }
             }

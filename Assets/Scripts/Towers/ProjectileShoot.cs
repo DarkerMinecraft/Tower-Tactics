@@ -26,7 +26,7 @@ namespace Tactics.Towers
         {
             timeBetweenShootTimer += Time.deltaTime;
 
-            if ((stats.GetStat(Stat.ShootingTime) / (PlayButton.IsFast() ? 2 : 1)) <= timeBetweenShootTimer)
+            if ((stats.GetStat(Stat.ShootingTime) / (PlayButton.IsFast() ? 5 : 1)) <= timeBetweenShootTimer)
             {
                 if (GetComponent<TowerController>().inRadiusEnemies.Count != 0)
                 {
@@ -51,5 +51,6 @@ namespace Tactics.Towers
                 projectile.GetComponent<ProjectileMovement>().MoveTo(enemies[enemies.Count - 1]);
             }
         }
+
     }
 }

@@ -1,17 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Tactics.UI
 {
-    public class TowerInfoUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class TowerBuyerUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
 
         public static bool onUI;
 
-        void Start() 
+        void Start()
         {
             onUI = false;
-            gameObject.SetActive(false);
         }
 
         public void OnPointerEnter(PointerEventData eventData)

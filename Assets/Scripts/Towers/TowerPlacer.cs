@@ -46,6 +46,7 @@ namespace Tactics.Towers
 
         void Update()
         {
+            GetComponent<TowerPicker>().enabled = !towerBought;
             if (!towerBought) return;
 
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -62,8 +63,6 @@ namespace Tactics.Towers
                     CoinsChanger.ChangeCoins(-cost);
                     towerObject.GetComponent<TowerController>().radiusCircle.enabled = false;
                     towerBought = false;
-
-                    GetComponent<TowerPicker>().enabled = true;
                 }
             }
             else radiusCircle.color = red;
@@ -72,7 +71,6 @@ namespace Tactics.Towers
             {
                 Destroy(towerObject);
                 towerBought = false;
-                GetComponent<TowerPicker>().enabled = true;
             }
         }
 
@@ -101,6 +99,8 @@ namespace Tactics.Towers
                     }
                 }
             }
+
+            if (TowerBuyerUI.onUI) return false;
 
             return true;
         }

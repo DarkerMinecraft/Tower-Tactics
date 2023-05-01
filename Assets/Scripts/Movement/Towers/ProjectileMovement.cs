@@ -33,5 +33,7 @@ namespace Tactics.Movement.Towers
         }
 
         public void MoveTo(GameObject target) { this.target = target; }
+
+        public GameObject GetTarget() { return target; }
     }
 }

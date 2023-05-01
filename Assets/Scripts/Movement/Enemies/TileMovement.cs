@@ -15,7 +15,7 @@ namespace Tactics.Movement.Enemies
         [Range(0, 10)]
         private float rotationSpeed;
 
-        [SerializeField]
+        [HideInInspector]
         public int currentWaypoint;
 
         private BaseStats baseStats;

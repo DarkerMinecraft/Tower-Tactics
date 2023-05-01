@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using Tactics.Enemies;
 using Tactics.Stats;
+using Tactics.UI;
 using UnityEngine;
 
 namespace Tactics.Towers
 {
-    public class TowerController : MonoBehaviour
+    public class TowerController : MonoBehaviour, IModifierProvider
     {
       
         [HideInInspector]
@@ -64,5 +65,16 @@ namespace Tactics.Towers
         }
 
         public float GetRadius() { return stats.GetStat(Stat.Radius); }
+
+        public IEnumerable<float> GetAdditiveModifers(Stat stat)
+        {
+            yield return 0;
+        }
+
+        public IEnumerable<float> GetPercentageModifers(Stat stat)
+        {
+            if (stat == Stat.Speed && PlayButton.IsFast())
+                yield return 400;
+        }
     }
 }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &463257230679995785
+--- !u!1001 &6122998080593968848
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,38 +10,30 @@ PrefabInstance:
     - target: {fileID: 3924274181809630691, guid: ba05bb2051b3c7d949b97babeb83ea5e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 251ebd7f2d076f64aad9e8b7d34f35cd, type: 3}
+      objectReference: {fileID: 21300000, guid: 7aad4a7e3e392ce46afe48657ccd0c55, type: 3}
     - target: {fileID: 6287980939286578933, guid: ba05bb2051b3c7d949b97babeb83ea5e, type: 3}
       propertyPath: stats.Array.data[0].baseValue
-      value: 60
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 6287980939286578933, guid: ba05bb2051b3c7d949b97babeb83ea5e, type: 3}
       propertyPath: stats.Array.data[1].baseValue
-      value: 7
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6287980939286578933, guid: ba05bb2051b3c7d949b97babeb83ea5e, type: 3}
       propertyPath: stats.Array.data[2].baseValue
-      value: 5
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 6287980939286578933, guid: ba05bb2051b3c7d949b97babeb83ea5e, type: 3}
       propertyPath: stats.Array.data[3].baseValue
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6529483028984558521, guid: ba05bb2051b3c7d949b97babeb83ea5e, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6529483028984558521, guid: ba05bb2051b3c7d949b97babeb83ea5e, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7565730260586165048, guid: ba05bb2051b3c7d949b97babeb83ea5e, type: 3}
       propertyPath: lowerEnemy
       value: 
-      objectReference: {fileID: 1245325219324186335, guid: 6f2fd332000ae834394369a833692a3b, type: 3}
+      objectReference: {fileID: 7563712213895257550, guid: 02a26f9d7e69e144f8cedff68e57a6ed, type: 3}
     - target: {fileID: 7969794435129894983, guid: ba05bb2051b3c7d949b97babeb83ea5e, type: 3}
       propertyPath: m_Name
-      value: Enemy3
+      value: Enemy4
       objectReference: {fileID: 0}
     - target: {fileID: 8508049061690431681, guid: ba05bb2051b3c7d949b97babeb83ea5e, type: 3}
       propertyPath: m_RootOrder

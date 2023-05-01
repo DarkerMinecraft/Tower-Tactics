@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Tactics.Towers.Upgrader;
 using TMPro;
@@ -101,6 +102,15 @@ namespace Tactics.UI
             if(towerCost.ContainsKey(tower))
                 return towerCost[tower]; 
             else return 0;
+        }
+
+        public void RemoveTower(GameObject tower)
+        {
+            if(currentUpgrade.ContainsKey(tower))
+                currentUpgrade.Remove(tower);
+
+            if(towerCost.ContainsKey(tower))
+                towerCost.Remove(tower);
         }
     }
 }

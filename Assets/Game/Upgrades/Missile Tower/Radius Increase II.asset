@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bd6ca29b57880d4694e18d7babce49f, type: 3}
-  m_Name: Faster Shooting
+  m_Name: Radius Increase II
   m_EditorClassIdentifier: 
-  upgradeName: Faster Shooting
-  description: 'This is increase shooting speed by 15 percent. '
-  stat: 5
-  percentage: -15
+  upgradeName: Epic Range
+  description: This is increase the range by 10 percentage.
+  stat: 3
+  percentage: 40
   addition: 0
-  cost: 130
+  cost: 215
