@@ -243,6 +243,8 @@ MonoBehaviour:
     baseValue: 0.3
   - stat: 3
     baseValue: 3
+  - stat: 7
+    baseValue: 215
 --- !u!114 &6852582275252020750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,6 +299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path1:
   - {fileID: 11400000, guid: 3cfbb7446c7a885478fd15706ae1efc9, type: 2}
+  - {fileID: 11400000, guid: 1bafadfec4fdf6249a104e144208d93f, type: 2}
   path2:
   - {fileID: 11400000, guid: 1835c9e870e2895479dbd9283d79360c, type: 2}
 --- !u!61 &-5632763126163023801

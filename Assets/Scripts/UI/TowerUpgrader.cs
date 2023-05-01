@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Tactics.UI
 {
-    public class TowerUpgrader : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class TowerUpgrader : MonoBehaviour
     {
         [HideInInspector]
         public Upgrade[] upgraders;
@@ -22,33 +22,43 @@ namespace Tactics.UI
 
         private bool canUpgrade;
 
-        public static bool onUI = false;
+        private Dictionary<GameObject, int> towerCost;
 
         private void Start()
         {
             currentUpgrade = new Dictionary<GameObject, int>();
+            towerCost = new Dictionary<GameObject, int>();
+
             canUpgrade = true;
         }
 
-        public void OnClick() 
+        public void OnClick()
         {
-            Upgrade upgrade = upgraders[currentUpgrade[tower]];
+            int index = currentUpgrade[tower];
 
-            if (CoinsChanger.CanChangeCoins(upgrade.Cost) && canUpgrade) 
+            if (index < upgraders.Length)
             {
-                TowerStats towerStats = tower.GetComponent<TowerStats>();
+                Upgrade upgrade = upgraders[index];
 
-                towerStats.AddAdditiveModifer(upgrade.Stat, upgrade.Addition);
-                towerStats.AddPercentageModifer(upgrade.Stat, upgrade.Percentage);
-
-                CoinsChanger.ChangeCoins(-upgrade.Cost);
-
-                currentUpgrade[tower]++;
-                if (currentUpgrade[tower] >= upgraders.Length)
+                if (CoinsChanger.CanChangeCoins(upgrade.Cost) && canUpgrade)
                 {
-                    canUpgrade = false;
-                    GetComponentInChildren<TextMeshProUGUI>().text = "Upgrade Path Complete";
-                    cost.text = "";
+                    TowerStats towerStats = tower.GetComponent<TowerStats>();
+
+                    towerStats.AddAdditiveModifer(upgrade.Stat, upgrade.Addition);
+                    towerStats.AddPercentageModifer(upgrade.Stat, upgrade.Percentage);
+
+                    CoinsChanger.ChangeCoins(-upgrade.Cost);
+                    if (!towerCost.ContainsKey(tower))
+                        towerCost.Add(tower, 0);
+                    towerCost[tower] += upgrade.Cost;
+
+                    currentUpgrade[tower]++;
+                    if (currentUpgrade[tower] >= upgraders.Length)
+                    {
+                        canUpgrade = false;
+                        GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Upgrade Path Complete";
+                        cost.text = "";
+                    }
                 }
             }
         }
@@ -59,26 +69,38 @@ namespace Tactics.UI
 
             if (!currentUpgrade.ContainsKey(tower))
                 currentUpgrade.Add(tower, 0);
+
             if (currentUpgrade[tower] < upgraders.Length) canUpgrade = true;
             if (!canUpgrade) return;
 
             UpdateButton();
         }
 
-        void UpdateButton() 
+        void UpdateButton()
         {
-            GetComponentInChildren<TextMeshProUGUI>().text = upgraders[currentUpgrade[tower]].UpgradeName;
-            cost.text = "$" + upgraders[currentUpgrade[tower]].Cost.ToString("N0");
+            int index = currentUpgrade[tower];
+
+            if (index < upgraders.Length)
+            {
+                Upgrade upgrade = upgraders[index];
+
+                GetComponentsInChildren<TextMeshProUGUI>()[0].text = upgrade.UpgradeName;
+                cost.text = "$" + upgrade.Cost.ToString("N0");
+            }
+            else 
+            {
+                GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Upgrade Path Complete";
+                cost.text = "";
+
+                canUpgrade = false;
+            }
         }
 
-        public void OnPointerEnter(PointerEventData eventData)
+        public int GetUpgradeCost(GameObject tower)
         {
-            onUI = true;
-        }
-
-        public void OnPointerExit(PointerEventData eventData)
-        {
-            onUI = false;
+            if(towerCost.ContainsKey(tower))
+                return towerCost[tower]; 
+            else return 0;
         }
     }
 }

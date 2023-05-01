@@ -1,7 +1,9 @@
 using System.Collections;
+using Tactics.Assets.Scripts.UI;
 using Tactics.Towers.Upgrader;
 using Tactics.UI;
 using Tactics.Upgrader;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Tactics.Towers
@@ -24,7 +26,7 @@ namespace Tactics.Towers
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0) && !TowerUpgrader.onUI)
+            if (Input.GetMouseButtonDown(0) && !TowerInfoUI.onUI)
             {
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -48,7 +50,7 @@ namespace Tactics.Towers
                 }
 
                 if (closestObject != null)
-                { 
+                {
                     upgradersPath1 = closestObject.GetComponent<TowerUpgrades>().path1;
                     upgradersPath2 = closestObject.GetComponent<TowerUpgrades>().path2;
                     ActiveUpgrade(true, closestObject);
@@ -61,6 +63,12 @@ namespace Tactics.Towers
         void ActiveUpgrade(bool activation, GameObject obj)
         {
             towerUpgraderUI.SetActive(activation);
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).GetComponent<TowerController>().radiusCircle.enabled = false;
+            }
+
             if (obj == null) return;
 
             if (activation)
@@ -73,6 +81,8 @@ namespace Tactics.Towers
 
                 upgraders[0].upgraders = upgradersPath1;
                 upgraders[1].upgraders = upgradersPath2;
+
+                towerUpgraderUI.GetComponentInChildren<TowerSeller>().tower = obj;
             }
 
             obj.GetComponent<TowerController>().radiusCircle.enabled = activation;

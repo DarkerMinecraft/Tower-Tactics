@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Tactics.Stats;
 using Tactics.Towers;
 using TMPro;
 using UnityEngine;
@@ -14,10 +15,10 @@ namespace Tactics.UI
         private GameObject tower;
 
         [SerializeField]
-        private int cost;
+        private TowerPlacer towerPlacer;
 
         [SerializeField]
-        private TowerPlacer towerPlacer;
+        private int cost;
 
         public static bool onUI = false;
 
@@ -32,6 +33,8 @@ namespace Tactics.UI
             {
                 towerPlacer.CreateTower(tower, cost);
             }
+
+            towerPlacer.gameObject.GetComponent<TowerPicker>().enabled = false;
         }
 
         public void OnPointerEnter(PointerEventData eventData)

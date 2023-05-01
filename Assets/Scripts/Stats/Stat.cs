@@ -11,6 +11,7 @@ namespace Tactics.Stats
         Radius,
         KillReward,
         ShootingTime,
-        HealthDestroyer
+        HealthDestroyer,
+        BaseCost
     }
 }

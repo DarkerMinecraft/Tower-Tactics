@@ -62,6 +62,8 @@ namespace Tactics.Towers
                     CoinsChanger.ChangeCoins(-cost);
                     towerObject.GetComponent<TowerController>().radiusCircle.enabled = false;
                     towerBought = false;
+
+                    GetComponent<TowerPicker>().enabled = true;
                 }
             }
             else radiusCircle.color = red;
@@ -70,6 +72,7 @@ namespace Tactics.Towers
             {
                 Destroy(towerObject);
                 towerBought = false;
+                GetComponent<TowerPicker>().enabled = true;
             }
         }
 
