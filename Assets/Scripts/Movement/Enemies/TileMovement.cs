@@ -20,9 +20,12 @@ namespace Tactics.Movement.Enemies
 
         private BaseStats baseStats;
 
+        private Animator animator;
+
         private void Awake()
         {
             baseStats = GetComponent<BaseStats>();
+            animator = GetComponent<Animator>();
         }
 
         void Start()
@@ -42,10 +45,13 @@ namespace Tactics.Movement.Enemies
             float distance = Vector2.Distance(transform.position, waypoint);
 
             Vector2 direction = (waypoint - (Vector2)transform.position);
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+            SetAnimatorFields(direction.normalized);
+
+            /**float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
-
+            **/
             transform.position = Vector2.MoveTowards(transform.position, waypoint, baseStats.GetStat(Stat.Speed) * Time.deltaTime);
 
             if (distance <= 0.001f)
@@ -58,6 +64,12 @@ namespace Tactics.Movement.Enemies
                     Destroy(gameObject);
                 }
             }
+        }
+
+        void SetAnimatorFields(Vector2 direction) 
+        {
+            animator.SetFloat("X", direction.x);
+            animator.SetFloat("Y", direction.y);
         }
     }
 }

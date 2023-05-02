@@ -89,8 +89,7 @@ namespace Tactics.Enemies
                 allowedEnemies.Add(enemies[1]);
             else if(waveCounter == 9)
                 allowedEnemies.Add(enemies[2]);
-            else if(waveCounter == 25)
-                allowedEnemies.Add(enemies[3]);
+            
 
             StartCoroutine("StartWave");
         }
