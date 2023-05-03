@@ -19,9 +19,6 @@ namespace Tactics.UI
 
         public void onClick() 
         {
-            if(!targettingStatus.ContainsKey(tower))
-                targettingStatus[tower] = 0;
-
             targettingStatus[tower]++;
             if (targettingStatus[tower] >= 2)
                 targettingStatus[tower] = 0;
@@ -29,6 +26,11 @@ namespace Tactics.UI
 
         private void Update()
         {
+            if (tower == null) return;
+
+            if (!targettingStatus.ContainsKey(tower))
+                targettingStatus.Add(tower, 0);
+
             if (targettingStatus.ContainsKey(tower))
                 DisplayTarget(targettingStatus[tower]);
             else
@@ -45,6 +47,8 @@ namespace Tactics.UI
 
         public static int GetTargeting(GameObject obj)
         {
+            Debug.Log(targettingStatus.ContainsKey(obj));
+
             if (targettingStatus.ContainsKey(obj))
                 return targettingStatus[obj];
             else return 0;

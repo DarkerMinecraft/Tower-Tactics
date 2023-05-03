@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Tactics.Towers;
+using Tactics.UI;
 using UnityEngine;
 
 namespace Tactics.Movement.Towers
@@ -30,7 +31,7 @@ namespace Tactics.Movement.Towers
 
             if (inRadiusEnemies.Count != 0)
             {
-                GameObject target = inRadiusEnemies[0];
+                GameObject target = GetProjectileTarget();
                 if (target != null)
                 {
                     Vector3 direction = target.transform.position - transform.position;
@@ -43,6 +44,22 @@ namespace Tactics.Movement.Towers
             else transform.rotation = Quaternion.Slerp(transform.rotation, startingRotation, rotationSpeed * Time.deltaTime);
 
 
+        }
+
+        private GameObject GetProjectileTarget()
+        {
+            int targetType = TargetingButton.GetTargeting(transform.parent.gameObject);
+            List<GameObject> enemies = inRadiusEnemies;
+
+            if (targetType == 0)
+            {
+                return enemies[0];
+            }
+            else if (targetType == 1)
+            {
+                return enemies[enemies.Count - 1];
+            }
+            else return null;
         }
 
     }

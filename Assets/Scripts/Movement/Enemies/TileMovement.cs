@@ -28,7 +28,7 @@ namespace Tactics.Movement.Enemies
             animator = GetComponent<Animator>();
         }
 
-        void Start()
+        private void Start()
         {
             currentWaypoint = 0;
         }

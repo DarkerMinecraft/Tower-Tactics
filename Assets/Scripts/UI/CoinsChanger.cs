@@ -8,7 +8,7 @@ namespace Tactics.UI
     public class CoinsChanger : MonoBehaviour
     {
 
-        private static int coins = 650;
+        private static int coins = 675;
 
         private TextMeshProUGUI text;
 

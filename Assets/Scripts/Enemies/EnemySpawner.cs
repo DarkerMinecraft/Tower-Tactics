@@ -9,7 +9,7 @@ namespace Tactics.Enemies
     public class EnemySpawner : MonoBehaviour
     {
 
-        private const float A_10 = 40f;
+        private const float A_10 = 20f;
         private const float A_30 = 100f;
         private const float A_50 = 300f;
         private const float A_100 = 1000f;
@@ -49,7 +49,7 @@ namespace Tactics.Enemies
                 enemy.GetComponent<TileMovement>().path = paths[Random.Range(0, paths.Length)];
                 Instantiate(enemy, transform);
 
-                yield return new WaitForSeconds(PlayButton.IsFast() ? 1f / 5f : 1f );
+                yield return new WaitForSeconds(PlayButton.IsFast() ? 0.6f / 5f : 0.6f );
             }
 
             coroutineFinished = true;

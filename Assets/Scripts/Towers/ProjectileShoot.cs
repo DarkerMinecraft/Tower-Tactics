@@ -39,7 +39,7 @@ namespace Tactics.Towers
 
         private void SetProjectileTarget(GameObject projectile)
         {
-            int targetType = TargetingButton.GetTargeting(gameObject);
+            int targetType = TargetingButton.GetTargeting(transform.parent.gameObject);
             List<GameObject> enemies = GetComponent<TowerController>().inRadiusEnemies;
 
             if (targetType == 0)

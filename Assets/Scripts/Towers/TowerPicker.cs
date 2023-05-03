@@ -80,6 +80,7 @@ namespace Tactics.Towers
                 upgraders[1].upgraders = upgradersPath2;
 
                 towerUpgraderUI.GetComponentInChildren<TowerSeller>().tower = obj;
+                towerUpgraderUI.GetComponentInChildren<TargetingButton>().tower = obj;
             }
 
             obj.GetComponent<TowerController>().radiusCircle.enabled = activation;
