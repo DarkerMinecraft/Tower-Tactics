@@ -12,29 +12,40 @@ namespace Tactics.UI
     {
 
         [SerializeField]
-        private GameObject tower;
+        private GameObject obj;
+
+        [SerializeField]
+        private Tower tower;
 
         [SerializeField]
         private TowerPlacer towerPlacer;
 
-        [SerializeField]
         private int cost;
 
         public static bool onUI = false;
 
-        private void Start()
-        {
-            GetComponentInChildren<TextMeshProUGUI>().text = "$" + cost.ToString("N0");
-        }
-
         public void OnClick()
         {
+            if (!towerPlacer.gameObject.GetComponent<TowerPicker>().enabled) return;
+
+            for (int i = 0; i < towerPlacer.transform.childCount; i++)
+            {
+                towerPlacer.transform.GetChild(i).GetComponent<TowerController>().radiusCircle.enabled = false;
+            }
+
+
             if (CoinsChanger.CanChangeCoins(cost))
             {
-                towerPlacer.CreateTower(tower, cost);
+                towerPlacer.CreateTower(obj, cost);
             }
 
             towerPlacer.gameObject.GetComponent<TowerPicker>().enabled = false;
+        }
+
+        void Update() 
+        {
+            cost = TowerPricing.GetTowerPrice(tower);
+            GetComponentInChildren<TextMeshProUGUI>().text = "$" + cost.ToString("N0");
         }
 
         public void OnPointerEnter(PointerEventData eventData)

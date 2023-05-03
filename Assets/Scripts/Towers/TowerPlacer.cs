@@ -101,6 +101,7 @@ namespace Tactics.Towers
             }
 
             if (TowerBuyerUI.onUI) return false;
+            if (TowerInfoUI.onUI) return false;
 
             return true;
         }

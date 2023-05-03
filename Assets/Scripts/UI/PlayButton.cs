@@ -15,25 +15,10 @@ namespace Tactics.UI
         [SerializeField]
         private Color play, duringPlay;
 
-        private static bool fastForward = false;
-
         public void OnClick()
         {
             if (!enemySpawner.IsPlaying())
                 enemySpawner.CreateWave();
-            else
-            {
-                if (fastForward)
-                {
-                    fastForward = false;
-                    GetComponentInChildren<TextMeshProUGUI>().text = ">";
-                }
-                else
-                {
-                    fastForward = true;
-                    GetComponentInChildren<TextMeshProUGUI>().text = ">>";
-                }
-            }
         }
 
         private void Update()
@@ -42,6 +27,5 @@ namespace Tactics.UI
             else GetComponent<Button>().image.color = play;
         }
 
-        public static bool IsFast() { return fastForward; }
     }
 }

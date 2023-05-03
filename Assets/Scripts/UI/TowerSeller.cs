@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Tactics.Stats;
+using Tactics.Towers;
 using TMPro;
 using UnityEngine;
 
@@ -9,7 +10,10 @@ namespace Tactics.UI
     {
 
         [HideInInspector]
-        public GameObject tower;
+        public GameObject obj;
+
+        [HideInInspector]
+        public Tower tower;
 
         private float discountedReturn;
 
@@ -21,12 +25,12 @@ namespace Tactics.UI
 
             transform.parent.gameObject.SetActive(false);
 
-            Destroy(tower);
+            Destroy(obj);
         }
 
         private void Update()
         {
-            if (tower == null) return;
+            if (obj == null) return;
 
             discountedReturn = (float)GetTotalCost() * .7f;
             GetComponentInChildren<TextMeshProUGUI>().text = "Sell: $" + discountedReturn.ToString("N0");
@@ -43,10 +47,10 @@ namespace Tactics.UI
             {
                 TowerUpgrader tu = towerUpgraders[i];
 
-                upgradeCost += tu.GetUpgradeCost(tower);
+                upgradeCost += tu.GetUpgradeCost(obj);
             }
 
-            return upgradeCost + (int)tower.GetComponent<BaseStats>().GetStat(Stat.BaseCost);
+            return upgradeCost + TowerPricing.GetTowerPrice(tower);
         }
 
         void RemoveUpgrades() 
@@ -57,7 +61,7 @@ namespace Tactics.UI
             {
                 TowerUpgrader tu = towerUpgraders[i];
 
-                tu.RemoveTower(tower);
+                tu.RemoveTower(obj);
             }
         }
 

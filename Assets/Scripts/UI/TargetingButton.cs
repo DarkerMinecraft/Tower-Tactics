@@ -47,9 +47,7 @@ namespace Tactics.UI
 
         public static int GetTargeting(GameObject obj)
         {
-            Debug.Log(targettingStatus.ContainsKey(obj));
-
-            if (targettingStatus.ContainsKey(obj))
+            if (targettingStatus != null && targettingStatus.ContainsKey(obj))
                 return targettingStatus[obj];
             else return 0;
         }

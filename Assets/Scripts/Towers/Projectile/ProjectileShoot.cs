@@ -25,8 +25,7 @@ namespace Tactics.Towers
         void Update()
         {
             timeBetweenShootTimer += Time.deltaTime;
-
-            if ((stats.GetStat(Stat.ShootingTime) / (PlayButton.IsFast() ? 5 : 1)) <= timeBetweenShootTimer)
+            if (stats.GetStat(Stat.ShootingTime) <= timeBetweenShootTimer)
             {
                 if (GetComponent<TowerController>().inRadiusEnemies.Count != 0)
                 {

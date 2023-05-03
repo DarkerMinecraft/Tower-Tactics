@@ -23,7 +23,7 @@ namespace Tactics.Towers
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0) && (!TowerInfoUI.onUI || !towerUpgraderUI.activeSelf))
+            if (Input.GetMouseButtonDown(0) && (!TowerInfoUI.onUI || !towerUpgraderUI.activeSelf) && !TowerBuyerUI.onUI)
             {
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -79,7 +79,9 @@ namespace Tactics.Towers
                 upgraders[0].upgraders = upgradersPath1;
                 upgraders[1].upgraders = upgradersPath2;
 
-                towerUpgraderUI.GetComponentInChildren<TowerSeller>().tower = obj;
+                towerUpgraderUI.GetComponentInChildren<TowerSeller>().obj = obj;
+                towerUpgraderUI.GetComponentInChildren<TowerSeller>().tower = obj.GetComponent<TowerController>().tower;
+
                 towerUpgraderUI.GetComponentInChildren<TargetingButton>().tower = obj;
             }
 

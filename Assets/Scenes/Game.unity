@@ -296,7 +296,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -294.18, y: 27.97}
+  m_AnchoredPosition: {x: -294.18, y: 23.6}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &29406210
@@ -1664,6 +1664,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 322466183}
+  - component: {fileID: 322466186}
   - component: {fileID: 322466185}
   - component: {fileID: 322466184}
   m_Layer: 0
@@ -1733,6 +1734,27 @@ MonoBehaviour:
   towerDistance: 0
   upgradersPath1: []
   upgradersPath2: []
+--- !u!114 &322466186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322466182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6844a8eb1cd4f342851db3984ed3b0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prices:
+  - tower: 0
+    price: 215
+  - tower: 1
+    price: 300
+  - tower: 2
+    price: 500
+  - tower: 3
+    price: 3500
 --- !u!1 &410182863
 GameObject:
   m_ObjectHideFlags: 0
@@ -1799,7 +1821,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &411487717
 GameObject:
@@ -2809,6 +2831,7 @@ GameObject:
   - component: {fileID: 746136805}
   - component: {fileID: 746136807}
   - component: {fileID: 746136806}
+  - component: {fileID: 746136808}
   m_Layer: 5
   m_Name: Upgrader & Other Things
   m_TagString: Untagged
@@ -2877,6 +2900,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 746136804}
   m_CullTransparentMesh: 1
+--- !u!114 &746136808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746136804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca73f90d5f57c14eba0c7c530ea5342, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerUpgrades: {fileID: 2105578273}
 --- !u!1 &762550116
 GameObject:
   m_ObjectHideFlags: 0
@@ -3085,9 +3121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c95b51e9a7cfc4fba99a82c91c1295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tower: {fileID: 7533495389528319375, guid: 7dcaa87f411b56443bdfadbc3739f8ca, type: 3}
+  obj: {fileID: 7533495389528319375, guid: 7dcaa87f411b56443bdfadbc3739f8ca, type: 3}
+  tower: 0
   towerPlacer: {fileID: 322466184}
-  cost: 215
 --- !u!114 &934105789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3359,9 +3395,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c95b51e9a7cfc4fba99a82c91c1295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tower: {fileID: 7667444532220426938, guid: 9ad3def6e4baa0d4696e997f82a25bc2, type: 3}
+  obj: {fileID: 7667444532220426938, guid: 9ad3def6e4baa0d4696e997f82a25bc2, type: 3}
+  tower: 3
   towerPlacer: {fileID: 322466184}
-  cost: 3500
 --- !u!114 &1083383482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3755,7 +3791,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1231386700}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.0518363, y: -0.4400026, z: 0.11117252}
+  m_LocalPosition: {x: 2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4323,9 +4359,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c95b51e9a7cfc4fba99a82c91c1295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tower: {fileID: 3893008255566437870, guid: e3f5d91f634c68e43b82bbb8e756645d, type: 3}
+  obj: {fileID: 3893008255566437870, guid: e3f5d91f634c68e43b82bbb8e756645d, type: 3}
+  tower: 1
   towerPlacer: {fileID: 322466184}
-  cost: 350
 --- !u!114 &1464032278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4473,9 +4509,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c95b51e9a7cfc4fba99a82c91c1295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tower: {fileID: 1201050773090188670, guid: 7ed8304db70daa24db2f02a305c5907f, type: 3}
+  obj: {fileID: 1201050773090188670, guid: 7ed8304db70daa24db2f02a305c5907f, type: 3}
+  tower: 2
   towerPlacer: {fileID: 322466184}
-  cost: 500
 --- !u!114 &1466653604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4728,7 +4764,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -294.18, y: -27.97}
+  m_AnchoredPosition: {x: -294.18, y: -22.3}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1591347162
@@ -4743,7 +4779,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a64b524709966c4bb1701647d99a7db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tower: {fileID: 0}
+  obj: {fileID: 0}
+  tower: 0
 --- !u!114 &1591347163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7451,7 +7488,7 @@ RectTransform:
   - {fileID: 98216170}
   - {fileID: 746136805}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8045,7 +8082,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2105578274}
-  - component: {fileID: 2105578275}
   m_Layer: 5
   m_Name: Tower Information
   m_TagString: Untagged
@@ -8074,21 +8110,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 198.32, y: 0}
+  m_AnchoredPosition: {x: 198.32, y: -1.6}
   m_SizeDelta: {x: 638.47, y: 81.45}
   m_Pivot: {x: 0.43023646, y: 0.49999997}
---- !u!114 &2105578275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2105578273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aca73f90d5f57c14eba0c7c530ea5342, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2141020935
 GameObject:
   m_ObjectHideFlags: 0

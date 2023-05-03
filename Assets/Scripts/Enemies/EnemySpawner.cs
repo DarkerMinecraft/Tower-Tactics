@@ -49,7 +49,7 @@ namespace Tactics.Enemies
                 enemy.GetComponent<TileMovement>().path = paths[Random.Range(0, paths.Length)];
                 Instantiate(enemy, transform);
 
-                yield return new WaitForSeconds(PlayButton.IsFast() ? 0.6f / 5f : 0.6f );
+                yield return new WaitForSeconds(0.6f );
             }
 
             coroutineFinished = true;

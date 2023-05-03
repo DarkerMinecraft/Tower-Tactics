@@ -15,7 +15,7 @@ namespace Tactics.Movement.Towers
 
         private void Awake()
         {
-            baseStats = transform.parent.GetComponentInParent<BaseStats>();
+            baseStats = transform.GetComponentInParent<BaseStats>();
         }
 
         void Update()

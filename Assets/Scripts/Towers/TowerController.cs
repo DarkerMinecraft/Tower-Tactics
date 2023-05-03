@@ -21,6 +21,8 @@ namespace Tactics.Towers
 
         private BaseStats stats;
 
+        public Tower tower;
+
         private void Awake()
         {
             stats = GetComponent<BaseStats>();  
@@ -73,8 +75,7 @@ namespace Tactics.Towers
 
         public IEnumerable<float> GetPercentageModifers(Stat stat)
         {
-            if (stat == Stat.Speed && PlayButton.IsFast())
-                yield return 400;
+            yield return 0;
         }
     }
 }

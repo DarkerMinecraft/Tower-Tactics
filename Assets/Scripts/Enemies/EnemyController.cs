@@ -29,25 +29,31 @@ namespace Tactics.Enemies
 
         public IEnumerable<float> GetPercentageModifers(Stat stat)
         {
-            if (stat == Stat.Health)
-                yield return 70 * ((float)waveCounter / 2f);
+            if (stat == Stat.Health) 
+                yield return 30 *  ((float) (waveCounter / 3));
 
-            if (stat == Stat.Speed && PlayButton.IsFast())
-                yield return 400;
+            if(stat == Stat.Speed)
+                yield return 15 * ((float)(waveCounter / 3));
         }
 
         void OnDeath() 
         {
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<TileMovement>().enabled = false;
+
             if (lowerEnemy != null)
-            {
-                for (int i = 0; i < Random.Range(1, 4); i++)
-                {
-                    GameObject enemy = Instantiate(lowerEnemy, transform.parent);
-                    enemy.GetComponent<TileMovement>().path = GetComponent<TileMovement>().path;
-                    enemy.GetComponent<TileMovement>().currentWaypoint = GetComponent<TileMovement>().currentWaypoint;
-                }
-            }
+                SpawnLowerEnemies();
             Destroy(gameObject);
+        }
+
+        private IEnumerator SpawnLowerEnemies()
+        {
+            for (int i = 0; i < Random.Range(1, 11); i++)
+            {
+                GameObject enemy = Instantiate(lowerEnemy, transform.parent);
+                enemy.GetComponent<TileMovement>().path = GetComponent<TileMovement>().path;
+                yield return new WaitForSeconds(0.3f);
+            }
         }
     }
 }

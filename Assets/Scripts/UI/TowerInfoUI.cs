@@ -6,12 +6,15 @@ namespace Tactics.UI
     public class TowerInfoUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
 
+        [SerializeField]
+        private GameObject towerUpgrades;
+
         public static bool onUI;
 
         void Start() 
         {
             onUI = false;
-            gameObject.SetActive(false);
+            towerUpgrades.SetActive(false);
         }
 
         public void OnPointerEnter(PointerEventData eventData)

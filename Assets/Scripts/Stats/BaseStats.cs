@@ -18,6 +18,14 @@ namespace Tactics.Stats
             public float baseValue;
         }
 
+        public void SetStat(Stat stat, float baseValue)
+        {
+            if (dict.ContainsKey(stat))
+                dict[stat] = baseValue;
+            else
+                dict.Add(stat, baseValue);
+        }
+
         public float GetStat(Stat stat) 
         {
             return (GetBaseStat(stat) + GetAdditiveModifier(stat)) * GetPercentageModifer(stat);

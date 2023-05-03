@@ -236,15 +236,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
   - stat: 1
-    baseValue: 20
+    baseValue: 50
   - stat: 2
     baseValue: 15
   - stat: 5
-    baseValue: 0.2
+    baseValue: 0.3
   - stat: 3
     baseValue: 3
-  - stat: 7
-    baseValue: 215
 --- !u!114 &6852582275252020750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +258,7 @@ MonoBehaviour:
   spawner: {fileID: 0}
   inRadiusEnemies: []
   radiusCircle: {fileID: 0}
+  tower: 0
 --- !u!114 &8128685144222034886
 MonoBehaviour:
   m_ObjectHideFlags: 0
