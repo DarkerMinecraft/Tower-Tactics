@@ -22,7 +22,7 @@ namespace Tactics.Movement.Towers
         void Start()
         {
             startingRotation = transform.rotation;
-            towerController = transform.parent.GetComponent<TowerController>();
+            towerController = GetComponent<TowerController>();
         }
 
         void LateUpdate()

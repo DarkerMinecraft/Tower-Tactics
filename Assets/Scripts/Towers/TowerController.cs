@@ -42,7 +42,9 @@ namespace Tactics.Towers
                 {
                     Transform spawnerChild = spawner.transform.GetChild(i);
 
-                    float distance = Vector2.Distance(spawnerChild.position, transform.position);
+                    float distance = Vector2.Distance(transform.position, spawnerChild.position);
+
+                    Debug.Log(distance <= stats.GetStat(Stat.Radius));
 
                     if (!inRadiusEnemies.Contains(spawnerChild.gameObject))
                     {
@@ -63,7 +65,7 @@ namespace Tactics.Towers
                 }
             }
 
-            radiusCircle.transform.localScale = new Vector2(GetRadius(), GetRadius());
+            radiusCircle.transform.localScale = new Vector2(GetRadius() * 2, GetRadius() * 2);
         }
 
         public float GetRadius() { return stats.GetStat(Stat.Radius); }

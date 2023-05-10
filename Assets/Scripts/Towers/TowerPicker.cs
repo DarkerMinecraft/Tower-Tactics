@@ -43,6 +43,7 @@ namespace Tactics.Towers
                             closestObject = collider.gameObject;
                             closestDistance = distance;
                         }
+                        Debug.Log("Hey");
                     }
                 }
 

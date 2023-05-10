@@ -44,6 +44,8 @@ namespace Tactics.Movement.Towers
             int targetType = TargetingButton.GetTargeting(transform.parent.gameObject);
             List<GameObject> enemies = GetComponentInParent<TowerController>().inRadiusEnemies;
 
+            if (enemies.Count <= 0) Destroy(gameObject);
+
             if (targetType == 0)
             {
                 MoveTo(enemies[0]);

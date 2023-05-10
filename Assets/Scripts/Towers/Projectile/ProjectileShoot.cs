@@ -13,6 +13,9 @@ namespace Tactics.Towers
         [SerializeField]
         private GameObject projectile;
 
+        [SerializeField]
+        private Transform shootPosition;
+
         private BaseStats stats;
 
         private float timeBetweenShootTimer;
@@ -29,7 +32,7 @@ namespace Tactics.Towers
             {
                 if (GetComponent<TowerController>().inRadiusEnemies.Count != 0)
                 {
-                    GameObject projectile = Instantiate(this.projectile, transform);
+                    GameObject projectile = Instantiate(this.projectile, shootPosition == null ? transform : shootPosition);
                     SetProjectileTarget(projectile);
                     timeBetweenShootTimer = 0;
                 }
