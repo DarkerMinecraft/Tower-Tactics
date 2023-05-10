@@ -21,6 +21,9 @@ namespace Tactics.Enemies
         [SerializeField]
         private GameObject[] enemies;
 
+        [SerializeField]
+        private float enemySpawnRate = 0.6f;
+
         private bool playing;
 
         private static int waveCounter;
@@ -49,7 +52,7 @@ namespace Tactics.Enemies
                 enemy.GetComponent<TileMovement>().path = paths[Random.Range(0, paths.Length)];
                 Instantiate(enemy, transform);
 
-                yield return new WaitForSeconds(0.6f );
+                yield return new WaitForSeconds(PlayButton.IsFast() ? enemySpawnRate / 2 : enemySpawnRate);
             }
 
             coroutineFinished = true;
@@ -101,7 +104,7 @@ namespace Tactics.Enemies
                 playing = false;
                 coroutineFinished = false;
 
-                CoinsChanger.ChangeCoins(Random.Range(100, 201));
+                CoinsChanger.ChangeCoins(Random.Range(100, 151));
             }
 
             WaveCounter.SetWaveCounter(waveCounter);

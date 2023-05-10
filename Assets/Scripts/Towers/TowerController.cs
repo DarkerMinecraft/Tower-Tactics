@@ -75,7 +75,11 @@ namespace Tactics.Towers
 
         public IEnumerable<float> GetPercentageModifers(Stat stat)
         {
-            yield return 0;
+            if(stat == Stat.Speed && PlayButton.IsFast())
+                yield return 100;
+
+            if (stat == Stat.ShootingTime && PlayButton.IsFast())
+                yield return -50;
         }
     }
 }

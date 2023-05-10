@@ -34,6 +34,9 @@ namespace Tactics.Enemies
 
             if(stat == Stat.Speed)
                 yield return 15 * ((float)(waveCounter / 3));
+
+            if (stat == Stat.Speed && PlayButton.IsFast())
+                yield return 100;
         }
 
         void OnDeath() 
@@ -52,7 +55,7 @@ namespace Tactics.Enemies
             {
                 GameObject enemy = Instantiate(lowerEnemy, transform.parent);
                 enemy.GetComponent<TileMovement>().path = GetComponent<TileMovement>().path;
-                yield return new WaitForSeconds(0.3f);
+                yield return new WaitForSeconds(PlayButton.IsFast() ? 0.3f / 2 : 0.3f);
             }
         }
     }
