@@ -26,6 +26,8 @@ namespace Tactics.UI
 
         public void OnClick()
         {
+            if (LivesChanger.isGameOver) return;
+
             if (!towerPlacer.gameObject.GetComponent<TowerPicker>().enabled) return;
 
             for (int i = 0; i < towerPlacer.transform.childCount; i++)

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Tactics.Attributes;
+using Tactics.Enemies;
 using Tactics.Movement.Towers;
 using Tactics.Stats;
 using Tactics.UI;

@@ -30,5 +30,7 @@ namespace Tactics.UI
         {
             return coins >= amount;
         }
+
+        public static void SetCoins(int amount) { coins = amount; }
     }
 }

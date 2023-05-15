@@ -481,9 +481,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
   - stat: 0
-    baseValue: 60
+    baseValue: 35
   - stat: 1
-    baseValue: 7
+    baseValue: 6.3
   - stat: 4
     baseValue: 4
   - stat: 6

@@ -46,6 +46,8 @@ namespace Tactics.Towers
 
         void Update()
         {
+            if (LivesChanger.isGameOver) return;
+
             GetComponent<TowerPicker>().enabled = !towerBought;
             if (!towerBought) return;
 

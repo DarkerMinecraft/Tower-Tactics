@@ -23,6 +23,8 @@ namespace Tactics.Towers
 
         private void Update()
         {
+            if (LivesChanger.isGameOver) return;
+
             if (Input.GetMouseButtonDown(0) && (!TowerInfoUI.onUI || !towerUpgraderUI.activeSelf) && !TowerBuyerUI.onUI)
             {
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -43,7 +45,6 @@ namespace Tactics.Towers
                             closestObject = collider.gameObject;
                             closestDistance = distance;
                         }
-                        Debug.Log("Hey");
                     }
                 }
 

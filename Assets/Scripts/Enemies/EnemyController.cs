@@ -18,7 +18,6 @@ namespace Tactics.Enemies
         void Start()
         {
             waveCounter = EnemySpawner.GetWave();
-
             GetComponent<Health>().onDeath += OnDeath;
         }
 
@@ -29,17 +28,17 @@ namespace Tactics.Enemies
 
         public IEnumerable<float> GetPercentageModifers(Stat stat)
         {
-            if (stat == Stat.Health) 
-                yield return 30 *  ((float) (waveCounter / 3));
+            if (stat == Stat.Health)
+                yield return 150 * ((float)(waveCounter / 12));
 
-            if(stat == Stat.Speed)
-                yield return 15 * ((float)(waveCounter / 3));
+            if (stat == Stat.Speed)
+                yield return 75 * ((float)(waveCounter / 12));
 
             if (stat == Stat.Speed && PlayButton.IsFast())
                 yield return 100;
         }
 
-        void OnDeath() 
+        void OnDeath()
         {
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<TileMovement>().enabled = false;

@@ -5,6 +5,9 @@ namespace Tactics.Towers
 {
     public enum Tower
     {
-        Cannon
+        Cannon,
+        Normal_Crossbow,
+        Fire_Crossbow,
+        Ice_Crossbow
     }
 }

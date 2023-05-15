@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using Tactics.Towers.Upgrader;
 using TMPro;
 using UnityEngine;
@@ -9,7 +10,7 @@ using UnityEngine.UI;
 
 namespace Tactics.UI
 {
-    public class TowerUpgrader : MonoBehaviour
+    public class TowerUpgrader : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         [HideInInspector]
         public Upgrade[] upgraders;
@@ -18,6 +19,9 @@ namespace Tactics.UI
 
         [SerializeField]
         private TextMeshProUGUI cost;
+
+        [SerializeField]
+        private GameObject desciption;
 
         private Dictionary<GameObject, int> currentUpgrade;
 
@@ -35,6 +39,9 @@ namespace Tactics.UI
 
         public void OnClick()
         {
+
+            if (LivesChanger.isGameOver) return;
+
             int index = currentUpgrade[tower];
 
             if (index < upgraders.Length)
@@ -111,6 +118,20 @@ namespace Tactics.UI
 
             if(towerCost.ContainsKey(tower))
                 towerCost.Remove(tower);
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            int index = currentUpgrade[tower];
+            if (index >= upgraders.Length) return;
+
+            desciption.SetActive(true);
+            desciption.GetComponentInChildren<TextMeshProUGUI>().text = upgraders[currentUpgrade[tower]].Description;
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            desciption.SetActive(false);
         }
     }
 }

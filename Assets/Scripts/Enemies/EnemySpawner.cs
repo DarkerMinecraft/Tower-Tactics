@@ -112,5 +112,7 @@ namespace Tactics.Enemies
 
         public bool IsPlaying() { return playing; }
         public static int GetWave() { return waveCounter; }
+
+        public static void SetWaveCounter(int wave) { waveCounter = wave; }
     }
 }
