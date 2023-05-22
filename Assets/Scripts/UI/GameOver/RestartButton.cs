@@ -26,8 +26,8 @@ namespace Tactics.Assets.Scripts.UI.GameOver
 
             CoinsChanger.SetCoins(startingCash);
             LivesChanger.SetLives(startingLives);
-            EnemySpawner.SetWaveCounter(0);
-            LivesChanger.isGameOver = false;
+            EnemySpawner.ResetSpawner();
+            LivesChanger.isMenuUp = false;
 
             transform.parent.gameObject.SetActive(false);
         }

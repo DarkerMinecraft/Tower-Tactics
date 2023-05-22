@@ -15,7 +15,7 @@ namespace Tactics.UI
         private static GameObject gameOverObj;
 
         [HideInInspector]
-        public static bool isGameOver = false;
+        public static bool isMenuUp = false;
 
         void Awake()
         {
@@ -36,7 +36,7 @@ namespace Tactics.UI
             if (lives <= 0)
             {
                 gameOverObj.SetActive(true);
-                isGameOver = true;
+                isMenuUp = true;
             }
             lives = Mathf.Clamp(lives, 0, lives);
         }

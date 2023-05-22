@@ -23,7 +23,7 @@ namespace Tactics.Towers
 
         private void Update()
         {
-            if (LivesChanger.isGameOver) return;
+            if (LivesChanger.isMenuUp) return;
 
             if (Input.GetMouseButtonDown(0) && (!TowerInfoUI.onUI || !towerUpgraderUI.activeSelf) && !TowerBuyerUI.onUI)
             {

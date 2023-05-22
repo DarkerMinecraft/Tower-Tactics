@@ -26,7 +26,7 @@ namespace Tactics.UI
 
         public void OnClick()
         {
-            if (LivesChanger.isGameOver) return;
+            if (LivesChanger.isMenuUp) return;
 
             if (!towerPlacer.gameObject.GetComponent<TowerPicker>().enabled) return;
 

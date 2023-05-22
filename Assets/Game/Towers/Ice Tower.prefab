@@ -23,6 +23,18 @@ PrefabInstance:
       propertyPath: stats.Array.data[1].baseValue
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 5713737625915077949, guid: 31fcb96e9baa49b46b5e46ada35c8a50, type: 3}
+      propertyPath: path1.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 19f611512352d574bbf15557a10b60f7, type: 2}
+    - target: {fileID: 5713737625915077949, guid: 31fcb96e9baa49b46b5e46ada35c8a50, type: 3}
+      propertyPath: path1.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: f917932306fa04145bfcf6a80f131ed5, type: 2}
+    - target: {fileID: 5713737625915077949, guid: 31fcb96e9baa49b46b5e46ada35c8a50, type: 3}
+      propertyPath: path2.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: b8dd261070e81b649bb7ac00de6bc810, type: 2}
     - target: {fileID: 5941111979860912925, guid: 31fcb96e9baa49b46b5e46ada35c8a50, type: 3}
       propertyPath: tower
       value: 3

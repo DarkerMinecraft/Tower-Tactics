@@ -23,7 +23,11 @@ namespace Tactics.UI
         [SerializeField]
         private GameObject desciption;
 
-        private Dictionary<GameObject, int> currentUpgrade;
+        [SerializeField]
+        private TowerUpgrader otherUpgrader;
+
+        [HideInInspector]
+        public Dictionary<GameObject, int> currentUpgrade;
 
         private bool canUpgrade;
 
@@ -40,7 +44,16 @@ namespace Tactics.UI
         public void OnClick()
         {
 
-            if (LivesChanger.isGameOver) return;
+            if (LivesChanger.isMenuUp) return;
+
+            if (currentUpgrade[tower] >= upgraders.Length)
+            {
+                canUpgrade = false;
+                GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Upgrade Path Complete";
+                cost.text = "";
+            }
+
+            if (!canUpgrade) return;
 
             int index = currentUpgrade[tower];
 
@@ -61,12 +74,6 @@ namespace Tactics.UI
                     towerCost[tower] += upgrade.Cost;
 
                     currentUpgrade[tower]++;
-                    if (currentUpgrade[tower] >= upgraders.Length)
-                    {
-                        canUpgrade = false;
-                        GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Upgrade Path Complete";
-                        cost.text = "";
-                    }
                 }
             }
         }

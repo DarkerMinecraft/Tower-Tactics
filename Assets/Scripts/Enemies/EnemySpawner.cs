@@ -31,7 +31,14 @@ namespace Tactics.Enemies
 
         private bool coroutineFinished;
 
-        private List<GameObject> allowedEnemies;
+        private static List<GameObject> allowedEnemies;
+
+        private static GameObject firstEnemy;
+
+        [HideInInspector]
+        public static bool isFreePlay = false;
+
+        private GameObject winGameObj; 
 
         void Start()
         {
@@ -40,7 +47,11 @@ namespace Tactics.Enemies
             allowedEnemies = new List<GameObject>();
             coroutineFinished = false;
 
-            allowedEnemies.Add(enemies[0]);
+            firstEnemy = enemies[0];    
+
+            allowedEnemies.Add(firstEnemy);
+
+            winGameObj = GameObject.FindGameObjectWithTag("Win");
         }
 
         IEnumerator StartWave()
@@ -62,6 +73,13 @@ namespace Tactics.Enemies
         {
             waveCounter++;
             playing = true;
+
+            if (waveCounter == 50 && !isFreePlay) 
+            {
+                LivesChanger.isMenuUp = true;
+                winGameObj.SetActive(true);
+                return;
+            }
 
             float a = 0;
 
@@ -108,11 +126,20 @@ namespace Tactics.Enemies
             }
 
             WaveCounter.SetWaveCounter(waveCounter);
+
         }
 
         public bool IsPlaying() { return playing; }
         public static int GetWave() { return waveCounter; }
 
-        public static void SetWaveCounter(int wave) { waveCounter = wave; }
+        private static void SetWaveCounter(int wave) { waveCounter = wave; }
+
+        public static void ResetSpawner() 
+        {
+            SetWaveCounter(0);
+            allowedEnemies.Clear();
+
+            allowedEnemies.Add(firstEnemy);
+        }
     }
 }
